@@ -205,6 +205,7 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+<<<<<<< HEAD
 
 # Rasa specific files
 models/
@@ -240,3 +241,5 @@ Thumbs.db
 
 # Jupyter Notebook checkpoints (if any notebooks added later)
 .ipynb_checkpoints/
+=======
+>>>>>>> 50ca811380a01377175a4bc3884644d1b06675df

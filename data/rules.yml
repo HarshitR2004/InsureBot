@@ -1,0 +1,116 @@
+version: "3.1"
+
+rules:
+
+- rule: Greet and introduction
+  steps:
+    - intent: confirm_identity
+    - action: utter_introduction
+
+- rule: Ask relationship if not policyholder
+  steps:
+    - intent: provide_relationship
+    - action: utter_handle_policy_question
+
+- rule: Customer is busy, offer callback
+  steps:
+    - intent: busy
+    - action: utter_busy_short_response
+
+- rule: Schedule callback
+  steps:
+    - intent: request_callback
+    - action: utter_ask_callback_time
+    - action: utter_confirm_callback
+    - action: utter_closing
+
+- rule: Confirm policy details
+  steps:
+    - intent: confirm_policy_details
+    - action: utter_confirm_policy_details
+
+- rule: Customer doesn't have policy bond
+  steps:
+    - intent: missing_policy_document
+    - action: utter_download_policy_bond
+
+- rule: Customer cannot pay
+  steps:
+    - intent: cannot_pay
+    - action: action_cannot_pay_support
+
+- rule: Customer rejects payment
+  steps:
+    - intent: reject_payment
+    - action: action_policy_status
+
+- rule: Customer asks for benefits
+  steps:
+    - intent: ask_benefits
+    - action: action_explain_benefits
+
+- rule: Payment guidance
+  steps:
+    - intent: agree_to_pay
+    - action: action_payment_guidance
+
+- rule: Language change request
+  steps:
+    - intent: change_language
+    - action: action_enhance_response
+
+- rule: Enhanced responses for customer support
+  steps:
+    - intent: already_paid
+    - action: action_enhance_response
+
+- rule: Bot challenge
+  steps:
+    - intent: bot_challenge
+    - action: utter_iamabot
+
+- rule: Policy details inquiry
+  steps:
+    - intent: ask_policy_details
+    - action: action_policy_specifics
+
+- rule: Market concerns
+  steps:
+    - intent: market_concerns
+    - action: action_scenario_response
+
+- rule: Single premium confusion
+  steps:
+    - intent: single_premium_confusion
+    - action: action_scenario_response
+
+- rule: Emergency financial needs
+  steps:
+    - intent: emergency_needs
+    - action: action_scenario_response
+
+- rule: Compare alternatives
+  steps:
+    - intent: compare_alternatives
+    - action: action_scenario_response
+
+- rule: Unsatisfied with returns
+  steps:
+    - intent: unsatisfied_returns
+    - action: action_scenario_response
+
+- rule: Want new policy
+  steps:
+    - intent: want_new_policy
+    - action: action_scenario_response
+
+- rule: Fund performance inquiry
+  steps:
+    - intent: ask_fund_performance
+    - action: action_fund_performance
+
+- rule: Tax benefits inquiry
+  steps:
+    - intent: ask_tax_benefits
+    - action: action_tax_benefits
+

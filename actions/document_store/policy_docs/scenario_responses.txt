@@ -1,0 +1,55 @@
+Scenario-Based Customer Responses
+
+Scenario 1: Markets Too High - Customer Wants to Wait
+Customer Concern: "Markets are too high, I wish to pay when markets fall"
+Response Points:
+- Specific due dates must be met, or Rs. 10,00,000 life insurance becomes NIL
+- Option to invest in debt-oriented funds with lower risk like Bond Fund (5.45% returns)
+- Can switch to equity funds anytime when market views change
+- Auto-transfer Portfolio strategy available for systematic debt-to-equity movement
+
+Scenario 2: Single Premium Plan Confusion
+Customer Concern: "I don't want to pay more premiums, was sold as single premium"
+Response Points:
+- Premium Payment Term (PPT) is clearly 7 years as per policy document
+- Discontinuing causes two-fold value loss:
+  * Money goes to low-yield Discontinued Life Fund (4.30% returns vs 16.91% in Pure Stock Fund)
+  * Loss of Rs. 10,00,000 life cover
+- Continuing gives loyalty additions of Rs. 22,000 over policy term
+- Can continue with market-linked funds for better returns
+
+Scenario 3: Financial Emergency
+Customer Concern: "Emergency financial needs, cannot pay premiums"
+Response Points:
+- Due date deadline critical - life insurance of Rs. 10,00,000 becomes NIL if not paid
+- Suggest credit card payment option for immediate relief
+- After revival, can switch to half-yearly, quarterly, or monthly frequency
+- If policy completed 5 years: partial withdrawal option available for emergencies
+- Must pay full outstanding amount first, then new frequency applies from next premium
+
+Scenario 4: Better Investment Alternatives
+Customer Concern: "Mutual funds or business investments are better"
+Response Points:
+- Compare effective charges: Most mutual funds have 2% expense ratios WITHOUT life cover
+- Your policy's effective charges reduce to only 1.61% for remaining term (vs current 3.89%)
+- Loyalty additions of Rs. 22,000 not available in mutual funds
+- Life insurance cover of Rs. 10,00,000 included (separate cost in other investments)
+- Returns get closer to actual fund performance as charges reduce
+
+Scenario 5: Unsatisfactory Returns
+Customer Concern: "Low returns, not satisfied with policy performance"
+Response Points:
+- Current annualised effective returns: 11.47% (post all charges and taxes)
+- Effective charges drop sharply after lock-in: from 3.89% to only 1.61%
+- Can switch funds anytime based on risk appetite
+- Historical fund performance shows strong returns (Pure Stock Fund: 16.91%)
+- Bond Fund available for conservative approach (5.45% returns)
+
+Scenario 6: Buying New Policy
+Customer Concern: "Want to buy a new policy instead"
+Response Points:
+- New ULIP: Higher initial charges vs existing policy's low 1.61% remaining charges
+- Your current policy much cheaper than new ULIP for remaining term
+- Traditional savings plan: Consider diversifying by switching to debt funds in current policy
+- Asset allocation can be managed within existing policy without new charges
+- Surrendering existing policy loses accumulated benefits and loyalty additions

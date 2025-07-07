@@ -1,0 +1,128 @@
+version: "3.1"
+
+intents:
+  - confirm_identity
+  - provide_relationship
+  - busy
+  - request_callback
+  - confirm_policy_details
+  - missing_policy_document
+  - agree_to_pay
+  - already_paid
+  - cannot_pay
+  - reject_payment
+  - ask_benefits
+  - change_language
+  - bot_challenge
+  - ask_policy_details
+  - market_concerns
+  - single_premium_confusion
+  - emergency_needs
+  - compare_alternatives
+  - unsatisfied_returns
+  - want_new_policy
+  - ask_fund_performance
+  - ask_tax_benefits
+
+actions:
+  - action_enhance_response
+  - action_explain_benefits
+  - action_payment_guidance
+  - action_cannot_pay_support
+  - action_policy_status
+  - action_policy_specifics
+  - action_scenario_response
+  - action_fund_performance
+  - action_tax_benefits
+
+responses:
+  utter_greet:
+    - text: "Hello and very good morning. May I speak with {policy_holder_name}?"
+
+  utter_introduction:
+    - text: "I am Veena from ValuEnable Life Insurance. This is a service call about your life insurance policy. Is it a good time to talk?"
+
+  utter_ask_relationship:
+    - text: "May I know your relationship with {policy_holder_name}?"
+
+  utter_handle_policy_question:
+    - text: "Do you handle {policy_holder_name}'s policy number {policy_number}? Are you aware of its details?"
+
+  utter_busy_short_response:
+    - text: "It will take just 2 minutes. Can we talk now or should I call later?"
+
+  utter_confirm_policy_details:
+    - text: "Let me confirm your details. Your {product_name} policy number {policy_number} started on {policy_start_date}. You paid {total_premium_paid}. {outstanding_amount} due on {premium_due_date} is pending. Your policy is inactive now. May I know why you haven’t paid?"
+
+  utter_inform_grace_period_over:
+    - text: "Your policy grace period is over. You may lose your benefits. Would you like to know what benefits you can still get by resuming payments?"
+
+  utter_explain_benefits:
+    - text: "Sir/Ma'am, paying premiums boosts your investment. Renewal premiums give higher returns. You also get tax benefits under Section 80C and 10(10D). Does this help your decision?"
+
+  utter_download_policy_bond:
+    - text: "You can download your policy bond via WhatsApp. Just message from your registered number to 8806727272."
+
+  utter_payment_followup:
+    - text: "How do you plan to make the payment? Cash, cheque, or online?"
+
+  utter_offer_online_payment:
+    - text: "You can pay online. I can send you a link or you can visit our website. Debit, Credit, Net banking, PhonePe, Google Pay all work."
+
+  utter_encourage_digital_payment:
+    - text: "You can easily pay from home. I can guide you through digital payment now."
+
+  utter_note_payment_date:
+    - text: "Noted. I will send you the payment link. Please pay by the date to keep your benefits."
+
+  utter_confirm_payment_date:
+    - text: "Thanks. You will pay on {payment_date} via {payment_method}. We will call to confirm the payment status."
+
+  utter_payment_thank_you:
+    - text: "Thank you for your payment. May I know when you made it?"
+
+  utter_payment_mode_ask:
+    - text: "Where did you make the payment? Online, cheque, or cash?"
+
+  utter_payment_proof_request:
+    - text: "Please share the transaction ID or cheque number. I can help track your payment."
+
+  utter_financial_problem_response:
+    - text: "I understand. You can pay via credit card, EMI, or monthly option. Can you arrange the premium to keep your benefits?"
+
+  utter_rebuttal_benefits:
+    - text: "If you stop paying before 5 years, policy discontinues and returns drop to 4-4.5%. You also lose your sum assured of {sum_assured}. Continue paying to receive {fund_value} at maturity. Can I help you resume payment?"
+
+  utter_ask_callback_time:
+    - text: "When can I call you again to discuss your policy? Please share a convenient time."
+
+  utter_confirm_callback:
+    - text: "Thank you. I will arrange a callback at the given time."
+
+  utter_closing:
+    - text: "For any help, call 1800 209 7272 or WhatsApp 8806 727272. Thank you for your time. Have a great day."
+
+  utter_iamabot:
+    - text: "I am a bot, here to assist you with your life insurance policy."
+
+slots:
+  policy_holder_name:
+    type: text
+  policy_number:
+    type: text
+  product_name:
+    type: text
+  premium_due_date:
+    type: text
+  sum_assured:
+    type: text
+  fund_value:
+    type: text
+  outstanding_amount:
+    type: text
+
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
+

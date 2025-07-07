@@ -1,0 +1,121 @@
+version: "3.1"
+
+stories:
+
+- story: Confirm identity and proceed to policy discussion
+  steps:
+    - intent: confirm_identity
+    - action: utter_introduction
+    - intent: confirm_policy_details
+    - action: action_enhance_response
+
+- story: User is not the policyholder, relationship confirmation
+  steps:
+    - intent: provide_relationship
+    - action: utter_handle_policy_question
+    - intent: confirm_policy_details
+    - action: action_enhance_response
+
+- story: Customer is busy, offers callback
+  steps:
+    - intent: busy
+    - action: utter_busy_short_response
+    - intent: request_callback
+    - action: utter_ask_callback_time
+    - action: utter_confirm_callback
+    - action: utter_closing
+
+- story: Customer agrees to discuss policy after being busy
+  steps:
+    - intent: busy
+    - action: utter_busy_short_response
+    - intent: confirm_policy_details
+    - action: action_enhance_response
+
+- story: Customer missing policy document
+  steps:
+    - intent: missing_policy_document
+    - action: utter_download_policy_bond
+
+- story: Customer agrees to pay
+  steps:
+    - intent: agree_to_pay
+    - action: action_payment_guidance
+
+- story: Customer already paid
+  steps:
+    - intent: already_paid
+    - action: action_enhance_response
+
+- story: Customer cannot pay, bot suggests options
+  steps:
+    - intent: cannot_pay
+    - action: action_cannot_pay_support
+
+- story: Customer asks for benefits
+  steps:
+    - intent: ask_benefits
+    - action: action_explain_benefits
+
+- story: Customer rejects payment after benefits explained
+  steps:
+    - intent: reject_payment
+    - action: action_policy_status
+
+- story: Language change request
+  steps:
+    - intent: change_language
+    - action: action_change_language
+
+- story: Bot challenge
+  steps:
+    - intent: bot_challenge
+    - action: utter_iamabot
+
+- story: Customer asks about policy details
+  steps:
+    - intent: ask_policy_details
+    - action: action_policy_specifics
+
+- story: Market concerns and solution
+  steps:
+    - intent: market_concerns
+    - action: action_scenario_response
+    - intent: ask_benefits
+    - action: action_explain_benefits
+
+- story: Single premium confusion clarification
+  steps:
+    - intent: single_premium_confusion
+    - action: action_scenario_response
+    - intent: ask_policy_details
+    - action: action_policy_specifics
+
+- story: Emergency needs and partial withdrawal
+  steps:
+    - intent: emergency_needs
+    - action: action_scenario_response
+    - intent: agree_to_pay
+    - action: action_payment_guidance
+
+- story: Fund performance and switching
+  steps:
+    - intent: ask_fund_performance
+    - action: action_fund_performance
+    - intent: unsatisfied_returns
+    - action: action_scenario_response
+
+- story: Tax benefits explanation
+  steps:
+    - intent: ask_tax_benefits
+    - action: action_tax_benefits
+    - intent: ask_benefits
+    - action: action_explain_benefits
+
+- story: Compare alternatives and retention
+  steps:
+    - intent: compare_alternatives
+    - action: action_scenario_response
+    - intent: want_new_policy
+    - action: action_scenario_response
+

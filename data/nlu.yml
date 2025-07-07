@@ -1,0 +1,153 @@
+version: "3.1"
+
+nlu:
+
+- intent: confirm_identity
+  examples: |
+    - Yes, speaking
+    - Yes, this is me
+    - I am (policy_holder_name)
+    - Speaking
+
+- intent: provide_relationship
+  examples: |
+    - I am his brother
+    - I am his wife
+    - He is my friend
+    - I handle his policy
+    - I take care of his policies
+
+- intent: busy
+  examples: |
+    - I am busy now
+    - Can't talk now
+    - Call me later
+    - I am in a meeting
+
+- intent: request_callback
+  examples: |
+    - Call me tomorrow
+    - Please call after 5 PM
+    - Can you call next week
+    - Reschedule this call
+
+- intent: confirm_policy_details
+  examples: |
+    - Yes, that's my policy
+    - Okay, tell me about the policy
+    - Please share the policy details
+
+- intent: missing_policy_document
+  examples: |
+    - I don't have the policy bond
+    - I lost the policy document
+    - Can't find my policy paper
+
+- intent: agree_to_pay
+  examples: |
+    - I will pay
+    - I will do the payment today
+    - I will pay online
+    - Sure, I will make the payment
+
+- intent: already_paid
+  examples: |
+    - I already paid
+    - Payment is done
+    - I paid last week
+
+- intent: cannot_pay
+  examples: |
+    - I can't pay now
+    - I have financial problems
+    - Can't afford to pay
+
+- intent: reject_payment
+  examples: |
+    - I don't want this policy
+    - I won't pay
+    - I want to cancel it
+
+- intent: ask_benefits
+  examples: |
+    - What benefits will I get?
+    - Can you tell me the policy benefits?
+    - How does this help me?
+
+- intent: change_language
+  examples: |
+    - Speak in Hindi
+    - Can we talk in Marathi?
+    - Please talk in Gujarati
+
+- intent: bot_challenge
+  examples: |
+    - Are you a bot?
+    - Who am I speaking to?
+    - Is this a real person?
+
+- intent: ask_policy_details
+  examples: |
+    - What is my premium amount?
+    - Tell me about my policy
+    - What is my fund value?
+    - How much is my sum assured?
+    - When is my due date?
+    - What are my fund allocations?
+
+- intent: market_concerns
+  examples: |
+    - Markets are too high
+    - I want to wait for market to fall
+    - Markets are overvalued
+    - Should I wait for correction?
+
+- intent: single_premium_confusion
+  examples: |
+    - This was sold as single premium
+    - I thought I pay only once
+    - Why do I need to pay again?
+    - Agent said one-time payment
+
+- intent: emergency_needs
+  examples: |
+    - I have medical emergency
+    - Need money urgently
+    - Financial crisis
+    - Can I withdraw money?
+
+- intent: compare_alternatives
+  examples: |
+    - Mutual funds are better
+    - Should I invest in business?
+    - Better options available
+    - Other investments give more returns
+
+- intent: unsatisfied_returns
+  examples: |
+    - Returns are low
+    - Not satisfied with performance
+    - Expected better returns
+    - My fund is not performing well
+
+- intent: want_new_policy
+  examples: |
+    - Want to buy new policy
+    - Should I surrender this policy?
+    - New ULIP available
+    - Better policy options
+
+- intent: ask_fund_performance
+  examples: |
+    - How are my funds performing?
+    - Fund returns
+    - Switch funds
+    - Which fund is best?
+
+- intent: ask_tax_benefits
+  examples: |
+    - What tax benefits do I get?
+    - Section 80C benefits
+    - Tax saving
+    - Is maturity taxable?
+

@@ -1,0 +1,7 @@
+rasa
+rasa-sdk
+langchain
+chromadb
+sentence-transformers
+requests
+ollama

@@ -1,0 +1,21 @@
+# RAG Components Requirements
+# Install these for the document indexing system
+
+# Core LangChain for document processing
+langchain==0.1.0
+langchain-weaviate==0.0.1
+
+# Weaviate vector database client
+weaviate-client==3.25.0
+
+# Text processing and embeddings
+sentence-transformers==2.2.2
+transformers==4.35.0
+
+# Document loaders
+unstructured==0.10.30
+python-magic==0.4.27
+
+# Utilities
+pathlib
+typing-extensions==4.8.0

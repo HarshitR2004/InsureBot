@@ -96,7 +96,6 @@ InsureBot/
 - **Document-grounded responses** using actual policy information
 - **Vector similarity search** for relevant context retrieval
 - **Local LLM processing** with Ollama (no cloud dependencies)
-- **35-word response limit** for concise, actionable advice
 
 ### Policy-Specific Knowledge
 - Exact policy numbers and performance metrics

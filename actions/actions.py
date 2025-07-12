@@ -10,7 +10,7 @@ from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk.events import SlotSet
 
 # Import RAG utilities
-from .llm_rag_utils import query_rag_system
+from .rag_components.rag_response import query_rag_system
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
@@ -37,10 +37,10 @@ class ActionEnhanceResponse(Action):
             logger.info(f"Processing intent: {intent}, message: {user_message}")
             
             # Query RAG system for enhanced response
-            rag_response = query_rag_system(user_message, intent)
+            rag_response_text = query_rag_system(user_message, intent)
             
             # Send response
-            dispatcher.utter_message(text=rag_response)
+            dispatcher.utter_message(text=rag_response_text)
             
             return []
             
@@ -72,10 +72,10 @@ class ActionExplainBenefits(Action):
             benefits_query = f"policy benefits tax benefits investment returns {user_message}"
             
             # Get RAG response
-            rag_response = query_rag_system(benefits_query, "ask_benefits")
+            rag_response_text = query_rag_system(benefits_query, "ask_benefits")
             
             # Send personalized response
-            dispatcher.utter_message(text=rag_response)
+            dispatcher.utter_message(text=rag_response_text)
             
             return []
             
@@ -107,9 +107,9 @@ class ActionPaymentGuidance(Action):
             payment_query = f"payment methods online payment EMI options {user_message}"
             
             # Get RAG response
-            rag_response = query_rag_system(payment_query, "payment_guidance")
+            rag_response_text = query_rag_system(payment_query, "payment_guidance")
             
-            dispatcher.utter_message(text=rag_response)
+            dispatcher.utter_message(text=rag_response_text)
             
             return []
             
@@ -140,9 +140,9 @@ class ActionCannotPaySupport(Action):
             support_query = f"financial hardship EMI options payment assistance {user_message}"
             
             # Get RAG response
-            rag_response = query_rag_system(support_query, "cannot_pay")
+            rag_response_text = query_rag_system(support_query, "cannot_pay")
             
-            dispatcher.utter_message(text=rag_response)
+            dispatcher.utter_message(text=rag_response_text)
             
             return []
             
@@ -173,9 +173,9 @@ class ActionPolicyStatus(Action):
             status_query = f"policy lapse grace period revival {user_message}"
             
             # Get RAG response
-            rag_response = query_rag_system(status_query, "policy_status")
+            rag_response_text = query_rag_system(status_query, "policy_status")
             
-            dispatcher.utter_message(text=rag_response)
+            dispatcher.utter_message(text=rag_response_text)
             
             return []
             
@@ -206,9 +206,9 @@ class ActionPolicySpecifics(Action):
             policy_query = f"policy details fund value premium amount sum assured {user_message}"
             
             # Get RAG response with specific policy context
-            rag_response = query_rag_system(policy_query, "policy_specifics")
+            rag_response_text = query_rag_system(policy_query, "ask_policy_details")
             
-            dispatcher.utter_message(text=rag_response)
+            dispatcher.utter_message(text=rag_response_text)
             
             return []
             
@@ -253,9 +253,21 @@ class ActionScenarioResponse(Action):
             
             # Query RAG with scenario context
             scenario_query = f"scenario {scenario_type} customer objection {user_message}"
-            rag_response = query_rag_system(scenario_query, "scenario_response")
             
-            dispatcher.utter_message(text=rag_response)
+            # Map scenario to appropriate intent
+            scenario_intent_map = {
+                "markets too high": "market_concerns",
+                "single premium plan confusion": "single_premium_confusion", 
+                "financial emergency": "emergency_needs",
+                "better alternatives": "compare_alternatives",
+                "unsatisfactory returns": "unsatisfied_returns",
+                "buying new policy": "want_new_policy"
+            }
+            
+            intent_to_use = scenario_intent_map.get(scenario_type, "market_concerns")
+            rag_response_text = query_rag_system(scenario_query, intent_to_use)
+            
+            dispatcher.utter_message(text=rag_response_text)
             
             return []
             
@@ -286,9 +298,9 @@ class ActionFundPerformance(Action):
             fund_query = f"fund performance allocation switching Pure Stock Bluechip Bond {user_message}"
             
             # Get RAG response
-            rag_response = query_rag_system(fund_query, "fund_performance")
+            rag_response_text = query_rag_system(fund_query, "ask_fund_performance")
             
-            dispatcher.utter_message(text=rag_response)
+            dispatcher.utter_message(text=rag_response_text)
             
             return []
             
@@ -319,9 +331,9 @@ class ActionTaxBenefits(Action):
             tax_query = f"tax benefits Section 80C 10 10D deduction savings {user_message}"
             
             # Get RAG response
-            rag_response = query_rag_system(tax_query, "tax_benefits")
+            rag_response_text = query_rag_system(tax_query, "ask_tax_benefits")
             
-            dispatcher.utter_message(text=rag_response)
+            dispatcher.utter_message(text=rag_response_text)
             
             return []
             

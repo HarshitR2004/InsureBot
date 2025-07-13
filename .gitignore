@@ -240,3 +240,45 @@ Thumbs.db
 
 # Jupyter Notebook checkpoints (if any notebooks added later)
 .ipynb_checkpoints/
+
+# Testing and migration files
+test_multi_tenant.py
+test_tenant_search.py
+migrate_to_multi_tenant.py
+
+# Temporary indexing and development scripts
+run_indexing.py
+
+# Backup and clean files
+domain_backup.yml
+domain_clean.yml
+rules_backup.yml
+rules_clean.yml
+
+# Development and experimental files
+*.backup
+*.bak
+*.old
+*.orig
+*_backup.*
+*_old.*
+*_test.*
+*_temp.*
+
+# Vector database and embedding cache
+embeddings_cache/
+vector_store_cache/
+.weaviate/
+
+# API keys and sensitive configuration
+.env.local
+.env.production
+.env.development
+config_local.yml
+secrets.yml
+api_keys.txt
+
+# Database files
+*.db
+*.sqlite
+*.sqlite3

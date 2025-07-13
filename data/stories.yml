@@ -7,14 +7,14 @@ stories:
     - intent: confirm_identity
     - action: utter_introduction
     - intent: confirm_policy_details
-    - action: action_enhance_response
+    - action: utter_confirm_policy_details
 
 - story: User is not the policyholder, relationship confirmation
   steps:
     - intent: provide_relationship
     - action: utter_handle_policy_question
     - intent: confirm_policy_details
-    - action: action_enhance_response
+    - action: utter_confirm_policy_details
 
 - story: Customer is busy, offers callback
   steps:
@@ -30,7 +30,7 @@ stories:
     - intent: busy
     - action: utter_busy_short_response
     - intent: confirm_policy_details
-    - action: action_enhance_response
+    - action: utter_confirm_policy_details
 
 - story: Customer missing policy document
   steps:

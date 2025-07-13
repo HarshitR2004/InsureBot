@@ -73,6 +73,26 @@ nlu:
     - What benefits will I get?
     - Can you tell me the policy benefits?
     - How does this help me?
+    - What are my policy benefits?
+    - What are my policy benifits?
+    - Tell me about my policy benefits
+    - What benefits do I get from my policy?
+    - What are the benefits of my insurance policy?
+    - Can you explain my policy benefits?
+    - What advantages does my policy give me?
+    - What do I get from my policy?
+    - Policy benefits please
+    - Explain the benefits
+    - What benefits are included?
+    - Show me policy benefits
+    - Benefits of my insurance
+    - What are the policy advantages?
+    - Insurance policy benefits
+    - My policy benefits
+    - Benefits included in policy
+    - Policy benefit details
+    - What benefits am I entitled to?
+    - Insurance benefits
 
 - intent: change_language
   examples: |

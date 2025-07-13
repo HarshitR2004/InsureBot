@@ -22,6 +22,7 @@ INTENT_DOCUMENT_MAPPING = {
     "want_new_policy": ["scenario_responses"],
     "policy_status": ["policy_lapse_revival"],
     "payment_guidance": ["payment_methods"],
+    "change_language": ["scenario_responses"],
 }
 
 # Your existing template is excellent
@@ -58,11 +59,10 @@ def get_document_filter(intent: str) -> Optional[Dict]:
         return {"documents": target_documents}
 
 def query_rag_system(question: str, intent: str = None) -> str:
-    """Main function called by Rasa actions with intent-guided retrieval"""
+    """Main function called by Rasa actions with intent-guided retrieval using multi-tenancy"""
     try:
-        # Get LLM and vector store instances
+        # Get LLM instance
         llm = LLM.get_instance()
-        vector_store = DatabaseManager.get_collection()
         
         # Get intent-based document filter
         doc_filter = get_document_filter(intent)
@@ -70,37 +70,55 @@ def query_rag_system(question: str, intent: str = None) -> str:
         docs = []
         
         if doc_filter and "documents" in doc_filter:
-            # Search multiple specific documents
+            # Search multiple specific document tenants
             target_docs = doc_filter["documents"]
             for doc_name in target_docs:
-                doc_results = vector_store.similarity_search(
-                    question, 
-                    k=2,  # Reduced k since we're searching multiple docs
-                    filter={"document_name": doc_name}
-                )
-                docs.extend(doc_results)
+                try:
+                    doc_results = DatabaseManager.search_tenant(
+                        tenant_name=doc_name,
+                        query=question, 
+                        k=2
+                    )
+                    docs.extend(doc_results)
+                except Exception as e:
+                    logger.warning(f"Failed to search tenant {doc_name}: {e}")
+                    continue
             
             # Limit total results
             docs = docs[:3]
             
-        elif doc_filter:
-            # Search single specific document
-            docs = vector_store.similarity_search(
-                question, 
-                k=3,
-                filter=doc_filter
-            )
+        elif doc_filter and len(doc_filter) == 1 and "document_name" in doc_filter:
+            # Search single specific document tenant
+            doc_name = doc_filter["document_name"]
+            try:
+                docs = DatabaseManager.search_tenant(
+                    tenant_name=doc_name,
+                    query=question,
+                    k=3
+                )
+            except Exception as e:
+                logger.warning(f"Failed to search tenant {doc_name}: {e}")
+                docs = []
         else:
-            # Fallback to general search if no intent mapping
-            docs = vector_store.similarity_search(question, k=3)
+            # Fallback to search across all known tenants if no intent mapping
+            # Get all known document tenants from the intent mapping
+            all_tenants = set()
+            for intent_docs in INTENT_DOCUMENT_MAPPING.values():
+                if isinstance(intent_docs, list):
+                    all_tenants.update(intent_docs)
+                else:
+                    all_tenants.add(intent_docs)
+            
+            docs = DatabaseManager.search_all_tenants(question, list(all_tenants), k=3)
         
         if not docs:
             logger.warning(f"No documents found for intent: {intent}, question: {question}")
-            return _fallback_response(intent)
+            return "I apologize, but I couldn't find relevant information. Could you please rephrase your question?"
         
         # Log which documents were retrieved
         retrieved_docs = [doc.metadata.get('source_file', 'Unknown') for doc in docs]
-        logger.info(f"Intent: {intent} -> Retrieved from: {retrieved_docs}")
+        retrieved_tenants = [doc.metadata.get('tenant', 'Unknown') for doc in docs]
+        logger.info(f"Intent: {intent} -> Retrieved from tenants: {retrieved_tenants}, files: {retrieved_docs}")
         
         # Combine contexts
         context_text = "\n".join([
@@ -128,18 +146,6 @@ def query_rag_system(question: str, intent: str = None) -> str:
         
     except Exception as e:
         logger.error(f"Error in query_rag_system: {e}")
-        return _fallback_response(intent)
-
-def _fallback_response(intent: str) -> str:
-    """Fallback responses when RAG fails"""
-    fallbacks = {
-        "ask_benefits": "Your policy offers tax benefits and life cover. Shall I explain more?",
-        "cannot_pay": "I understand. We have EMI options available. Can we discuss solutions?",
-        "agree_to_pay": "Great! I can help with payment. Shall I send the payment link?",
-        "ask_policy_details": "Let me check your policy details. What specific information do you need?",
-        "ask_fund_performance": "Your funds show good performance. Would you like specific performance numbers?",
-        "ask_tax_benefits": "Your premium gives tax benefits under Section 80C. Shall I explain more?",
-    }
-    return fallbacks.get(intent, "I'm here to help with your insurance policy. What would you like to know?")
+        return "I apologize for the technical issue. Please try rephrasing your question or contact customer service."
 
 

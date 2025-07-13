@@ -46,7 +46,6 @@ class ActionEnhanceResponse(Action):
             
         except Exception as e:
             logger.error(f"Error in ActionEnhanceResponse: {e}")
-            dispatcher.utter_message(text="I apologize for the inconvenience. Please contact our customer service.")
             return []
 
 
@@ -81,10 +80,6 @@ class ActionExplainBenefits(Action):
             
         except Exception as e:
             logger.error(f"Error in ActionExplainBenefits: {e}")
-            # Fallback response
-            dispatcher.utter_message(
-                text="Paying premiums gives tax benefits, higher returns, and protects your family. Continue paying to keep benefits."
-            )
             return []
 
 
@@ -115,9 +110,6 @@ class ActionPaymentGuidance(Action):
             
         except Exception as e:
             logger.error(f"Error in ActionPaymentGuidance: {e}")
-            dispatcher.utter_message(
-                text="You can pay online via our website, app, or WhatsApp. Debit, credit, UPI all work."
-            )
             return []
 
 
@@ -148,9 +140,6 @@ class ActionCannotPaySupport(Action):
             
         except Exception as e:
             logger.error(f"Error in ActionCannotPaySupport: {e}")
-            dispatcher.utter_message(
-                text="I understand your situation. We offer EMI options and payment assistance. Can we arrange a solution?"
-            )
             return []
 
 
@@ -181,9 +170,6 @@ class ActionPolicyStatus(Action):
             
         except Exception as e:
             logger.error(f"Error in ActionPolicyStatus: {e}")
-            dispatcher.utter_message(
-                text="Your policy is currently inactive. Pay within grace period to keep benefits active."
-            )
             return []
 
 
@@ -214,9 +200,6 @@ class ActionPolicySpecifics(Action):
             
         except Exception as e:
             logger.error(f"Error in ActionPolicySpecifics: {e}")
-            dispatcher.utter_message(
-                text="Let me check your policy details. Your premium is Rs. 1 lakh yearly with Rs. 10 lakh sum assured."
-            )
             return []
 
 
@@ -273,9 +256,6 @@ class ActionScenarioResponse(Action):
             
         except Exception as e:
             logger.error(f"Error in ActionScenarioResponse: {e}")
-            dispatcher.utter_message(
-                text="I understand your concern. Let me help you with the best solution for your situation."
-            )
             return []
 
 
@@ -306,9 +286,6 @@ class ActionFundPerformance(Action):
             
         except Exception as e:
             logger.error(f"Error in ActionFundPerformance: {e}")
-            dispatcher.utter_message(
-                text="Your funds show good performance. Pure Stock Fund has 16.91% returns since buying."
-            )
             return []
 
 
@@ -339,7 +316,36 @@ class ActionTaxBenefits(Action):
             
         except Exception as e:
             logger.error(f"Error in ActionTaxBenefits: {e}")
-            dispatcher.utter_message(
-                text="Your Rs. 1 lakh premium gives tax benefits under Section 80C. Maturity is tax-free."
-            )
+            return []
+
+
+class ActionChangeLanguage(Action):
+    """
+    Action for handling language change requests
+    """
+
+    def name(self) -> Text:
+        return "action_change_language"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        
+        try:
+            user_message = tracker.latest_message.get('text', '')
+            
+            # Query for language assistance
+            language_query = f"language support Hindi English customer service {user_message}"
+            
+            # Get RAG response
+            rag_response_text = query_rag_system(language_query, "change_language")
+            
+            dispatcher.utter_message(text=rag_response_text)
+            
+            return []
+            
+        except Exception as e:
+            logger.error(f"Error in ActionChangeLanguage: {e}")
+            # Fallback for language change
+            dispatcher.utter_message(text="I can help you in Hindi or English. Please let me know your preferred language.")
             return []

@@ -49,68 +49,67 @@ rules:
     - intent: ask_benefits
     - action: action_explain_benefits
 
-- rule: Payment guidance
+- rule: Customer asks for policy details
   steps:
-    - intent: agree_to_pay
-    - action: action_payment_guidance
+    - intent: ask_policy_details
+    - action: action_policy_specifics
+
+- rule: Customer has market concerns
+  steps:
+    - intent: market_concerns
+    - action: action_scenario_response
+
+- rule: Customer has single premium confusion
+  steps:
+    - intent: single_premium_confusion
+    - action: action_scenario_response
+
+- rule: Customer has emergency needs
+  steps:
+    - intent: emergency_needs
+    - action: action_scenario_response
+
+- rule: Customer compares alternatives
+  steps:
+    - intent: compare_alternatives
+    - action: action_scenario_response
+
+- rule: Customer unsatisfied with returns
+  steps:
+    - intent: unsatisfied_returns
+    - action: action_scenario_response
+
+- rule: Customer wants new policy
+  steps:
+    - intent: want_new_policy
+    - action: action_scenario_response
+
+- rule: Customer asks fund performance
+  steps:
+    - intent: ask_fund_performance
+    - action: action_fund_performance
+
+- rule: Customer asks tax benefits
+  steps:
+    - intent: ask_tax_benefits
+    - action: action_tax_benefits
 
 - rule: Language change request
   steps:
     - intent: change_language
-    - action: action_enhance_response
-
-- rule: Enhanced responses for customer support
-  steps:
-    - intent: already_paid
-    - action: action_enhance_response
+    - action: action_change_language
 
 - rule: Bot challenge
   steps:
     - intent: bot_challenge
     - action: utter_iamabot
 
-- rule: Policy details inquiry
+- rule: Payment guidance
   steps:
-    - intent: ask_policy_details
-    - action: action_policy_specifics
+    - intent: agree_to_pay
+    - action: action_payment_guidance
 
-- rule: Market concerns
+- rule: Enhanced responses for customer support
   steps:
-    - intent: market_concerns
-    - action: action_scenario_response
-
-- rule: Single premium confusion
-  steps:
-    - intent: single_premium_confusion
-    - action: action_scenario_response
-
-- rule: Emergency financial needs
-  steps:
-    - intent: emergency_needs
-    - action: action_scenario_response
-
-- rule: Compare alternatives
-  steps:
-    - intent: compare_alternatives
-    - action: action_scenario_response
-
-- rule: Unsatisfied with returns
-  steps:
-    - intent: unsatisfied_returns
-    - action: action_scenario_response
-
-- rule: Want new policy
-  steps:
-    - intent: want_new_policy
-    - action: action_scenario_response
-
-- rule: Fund performance inquiry
-  steps:
-    - intent: ask_fund_performance
-    - action: action_fund_performance
-
-- rule: Tax benefits inquiry
-  steps:
-    - intent: ask_tax_benefits
-    - action: action_tax_benefits
-
+    - intent: already_paid
+    - action: action_enhance_response

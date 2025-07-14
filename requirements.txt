@@ -5,3 +5,9 @@ chromadb
 sentence-transformers
 requests
 ollama
+fastapi
+uvicorn
+weaviate-client
+google-generativeai
+python-multipart
+websockets==10.4

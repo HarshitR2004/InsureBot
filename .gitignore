@@ -245,6 +245,7 @@ Thumbs.db
 test_multi_tenant.py
 test_tenant_search.py
 migrate_to_multi_tenant.py
+test_api_integration.py
 
 # Temporary indexing and development scripts
 run_indexing.py
@@ -254,6 +255,7 @@ domain_backup.yml
 domain_clean.yml
 rules_backup.yml
 rules_clean.yml
+
 
 # Development and experimental files
 *.backup
@@ -282,3 +284,6 @@ api_keys.txt
 *.db
 *.sqlite
 *.sqlite3
+
+node_modules/
+package-lock.json

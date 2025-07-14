@@ -11,7 +11,6 @@ from rasa_sdk.events import SlotSet
 
 # Import RAG utilities
 from .rag_components.rag_response import query_rag_system
-
 # Configure logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)

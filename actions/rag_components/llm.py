@@ -24,5 +24,5 @@ class LLM:
             except Exception as e:
                 print(f"Error initializing Google Generative AI LLM: {e}")
                 raise
-        return cls._instance
+        return cls._instance, True
         

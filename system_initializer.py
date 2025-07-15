@@ -93,13 +93,12 @@ class SystemInitializer:
                 await asyncio.sleep(0.08)
             
             # Actually test LLM
-            from actions.rag_components.llm import ChatLLM
-            llm = ChatLLM()
-            test_response = await asyncio.to_thread(llm.generate_response, "Test connection")
+            from actions.rag_components.llm import LLM
+            llm, response = LLM.get_instance()
             
-            if test_response:
+            if response:
                 self.initialization_status["llm"]["ready"] = True
-                self.initialization_status["llm"]["message"] = "✅ Language model ready"
+                self.initialization_status["llm"]["message"] = f"✅ LLM initialized successfully: {response}"
                 return True
             else:
                 raise Exception("Failed to initialize LLM")

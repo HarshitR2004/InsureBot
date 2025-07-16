@@ -4,7 +4,6 @@ langchain
 chromadb
 sentence-transformers
 requests
-ollama
 fastapi
 uvicorn
 weaviate-client

@@ -18,7 +18,7 @@ InsureBot is an AI-powered insurance assistant that enables voice-based interact
 
 ## Demo Video
 
-Watch the demo video [here](https://www.example.com/demo-placeholder).
+[Watch the demo video](https://drive.google.com/file/d/1D3YOzL_Tn75e0wkRIH3AmPdMtITZ-NTo/view?usp=sharing).
 
 ## Installation & Setup
 
@@ -71,9 +71,6 @@ docker build -t insurebot-asr .
 docker run -d -p 3001:3001 --name asr-service insurebot-asr
 ```
 
-Sure! Here's the updated section with the `pip install -r requirements.txt` step added before running the `start.bat` script:
-
----
 
 #### Start All Services
 
@@ -95,7 +92,6 @@ start.bat
 * Open the frontend in your browser.
 * Use the voice chat interface to interact with InsureBot.
 
----
 
 
 

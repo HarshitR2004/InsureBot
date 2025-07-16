@@ -1,30 +1,17 @@
-import { useState, useEffect } from 'react'
-import { BrowserRouter as Router, Routes, Route, useNavigate, Navigate } from 'react-router-dom'
-import { LoadingScreen } from '../pages/LoadingScreen'
-import SystemReady from '../pages/SystemReady'
-import './App.css'
+import React from "react";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import AudioPipeline from "./services/AudioPipeline";
 
-// Loading Page Component that handles navigation
-const LoadingPage = () => {
-  const navigate = useNavigate()
-
-  const handleSystemReady = () => {
-    navigate('/system-ready')
-  }
-
-  return <LoadingScreen onSystemReady={handleSystemReady} />
-}
-
-function App() {
+const App = () => {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<LoadingPage />} />
-        <Route path="/system-ready" element={<SystemReady />} />
-        <Route path="*" element={<Navigate to="/" replace />} />
+        <Route path="/" element={<Navigate to="/chat" />} />
+        <Route path="/chat" element={<AudioPipeline />} />
       </Routes>
     </Router>
-  )
-}
+  );
+};
 
-export default App
+export default App;
+

@@ -62,7 +62,7 @@ def query_rag_system(question: str, intent: str = None) -> str:
     """Main function called by Rasa actions with intent-guided retrieval using multi-tenancy"""
     try:
         # Get LLM instance
-        llm = LLM.get_instance()
+        llm, _ = LLM.get_instance()
         
         # Get intent-based document filter
         doc_filter = get_document_filter(intent)

@@ -139,10 +139,12 @@ const AudioPipeline = () => {
         console.log("Step 5: Received audio URL:", audioUrl);
         isAudioPlayingRef.current = true;
         audio.play()
-          .catch((err) => console.error("Audio play error:", err))
-          .finally(() => {
-            isAudioPlayingRef.current = false;
-      });
+          .catch((err) => console.error("Audio play error:", err));
+        audio.onended = () => {          
+          isAudioPlayingRef.current = false;
+          setDisabled(false);
+          console.log("Audio playback finished.");
+        }
         
       }
     } catch (err) {
@@ -155,76 +157,95 @@ const AudioPipeline = () => {
     }
   };
 
+return (
+  <div
+    style={{
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "center",
+      alignItems: "center",
+      height: "100vh",
+      width: "100vw",
+      backgroundColor: "#121212",
+      color: "#ffffff",
+      textAlign: "center",
+      padding: "1rem",
+      gap: "1.5rem",
+    }}
+  >
+    <h1 style={{ fontSize: "2.5rem", fontWeight: "bold", marginBottom: "1rem" }}>
+      Welcome to InsureBot
+    </h1>
 
-
-  return (
-    <div style={{ textAlign: "center", padding: "4rem" }}>
-      <h1>🎙 Voice Chat Assistant</h1>
-
-      {!chatStarted ? (
+    {!chatStarted ? (
+      <button
+        onClick={() => setChatStarted(true)}
+        style={{
+          fontSize: "1.5rem",
+          padding: "1rem 2rem",
+          borderRadius: "30px",
+          backgroundColor: "#007bff",
+          color: "white",
+          border: "none",
+          cursor: "pointer",
+          boxShadow: "0 4px 10px rgba(0,0,0,0.2)",
+        }}
+      >
+        Start Chat
+      </button>
+    ) : (
+      <>
         <button
-          onClick={() => setChatStarted(true)}
+          onClick={toggleRecording}
+          disabled={disabled}
           style={{
-            fontSize: "2rem",
-            padding: "1.5rem 3rem",
-            borderRadius: "50px",
-            backgroundColor: "#007bff",
+            backgroundColor: isRecording ? "#3215c2ff" : "#f00707ff",
             color: "white",
-            border: "none",
-            cursor: "pointer",
+            fontSize: "2.5rem",
+            borderRadius: "50%",
+            width: "130px",
+            height: "130px",
+            border: "4px solid white",
+            boxShadow: "0 8px 16px rgba(0, 0, 0, 0.3)",
+            cursor: disabled ? "not-allowed" : "pointer",
+            transition: "all 0.3s ease",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
           }}
         >
-          Start Chat
+          <FaMicrophone />
         </button>
-      ) : (
-        <>
-          <button
-            onClick={toggleRecording}
-            disabled={disabled || isAudioPlayingRef.current}
-            style={{
-              backgroundColor: isRecording ? "red" : "green",
-              color: "white",
-              fontSize: "3rem",
-              borderRadius: "50%",
-              width: "150px",
-              height: "150px",
-              border: "none",
-              cursor: disabled ? "not-allowed" : "pointer",
-              marginBottom: "2rem"
-            }}
-          >
-            <FaMicrophone />
-          </button>
 
-          <br />
-          <button
-            onClick={() => setChatStarted(false)}
-            disabled={isAudioPlayingRef.current}
-            style={{
-              padding: "1rem 2rem",
-              fontSize: "1.25rem",
-              backgroundColor: "#dc3545",
-              color: "white",
-              border: "none",
-              borderRadius: "8px",
-              cursor: isAudioPlayingRef.current ? "not-allowed" : "pointer",
-              opacity: isAudioPlayingRef.current ? 0.5 : 1
-            }}
-          >
-            End Chat
-          </button>
-        </>
-      )}
+        <button
+          onClick={() => setChatStarted(false)}
+          disabled={isAudioPlayingRef.current}
+          style={{
+            padding: "0.75rem 2rem",
+            fontSize: "1.2rem",
+            backgroundColor: "#e53935",
+            color: "white",
+            border: "none",
+            borderRadius: "10px",
+            cursor: isAudioPlayingRef.current ? "not-allowed" : "pointer",
+            opacity: isAudioPlayingRef.current ? 0.6 : 1,
+            boxShadow: "0 4px 10px rgba(0,0,0,0.2)",
+          }}
+        >
+          End Chat
+        </button>
+      </>
+    )}
 
-      {loading && <p>⏳ Processing...</p>}
-      {error && <p style={{ color: "red" }}>{error}</p>}
-      {transcription && (
-        <p style={{ marginTop: "1rem" }}>
-          <strong>Transcription:</strong> {transcription}
-        </p>
-      )}
-    </div>
-  );
+    {loading && (
+      <p style={{ fontSize: "1.1rem", color: "#ffcc00" }}>⏳ Processing...</p>
+    )}
+    {error && <p style={{ color: "#ff4d4f", fontWeight: "bold" }}>{error}</p>}
+  </div>
+);
+
+
+
 };
 
 export default AudioPipeline;
